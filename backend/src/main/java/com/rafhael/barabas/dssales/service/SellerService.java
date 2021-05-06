@@ -8,6 +8,6 @@ import com.rafhael.barabas.dssales.entities.Seller;
 import java.util.List;
 
 public interface SellerService {
-    Seller save(SellerDTO dto);
+    SellerDTO save(SellerDTO dto);
     List<SellerDTO> findAll();
 }

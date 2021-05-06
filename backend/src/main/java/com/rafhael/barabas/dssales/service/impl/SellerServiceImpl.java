@@ -21,9 +21,9 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public Seller save(SellerDTO dto) {
-        sellerRepository.save(dto.convert());
-        return null;
+    public SellerDTO save(SellerDTO dto) {
+        Seller save = sellerRepository.saveAndFlush(dto.convert());
+        return save.convert(save);
     }
 
     @Override
