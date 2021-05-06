@@ -1,5 +1,7 @@
 package com.rafhael.barabas.dssales.entities;
 
+import com.rafhael.barabas.dssales.dto.SellerDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +30,19 @@ public class Seller {
     public Seller(Long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Seller (SellerDTO dto){
+        id = dto.getId();
+        name = dto.getName();
+    }
+
+    public Seller convert(SellerDTO dto){
+        return new Seller(dto);
+    }
+
+    public SellerDTO convert(Seller seller){
+        return new SellerDTO(seller);
     }
 
     public Long getId() {
