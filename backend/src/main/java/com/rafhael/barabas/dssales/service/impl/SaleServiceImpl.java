@@ -1,6 +1,8 @@
 package com.rafhael.barabas.dssales.service.impl;
 
 import com.rafhael.barabas.dssales.dto.SaleDTO;
+import com.rafhael.barabas.dssales.dto.SaleSumDTO;
+import com.rafhael.barabas.dssales.dto.TaxSuccessDTO;
 import com.rafhael.barabas.dssales.entities.Sale;
 import com.rafhael.barabas.dssales.repositories.SaleRepository;
 import com.rafhael.barabas.dssales.repositories.SellerRepository;
@@ -10,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class SaleServiceImpl implements SaleService {
@@ -35,5 +39,16 @@ public class SaleServiceImpl implements SaleService {
         sellerRepository.findAll(); // n + 1
         Page<Sale> result = saleRepository.findAll(pageable);
         return result.map(Sale::convert);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<SaleSumDTO> amountGroupedBySeller() {
+        return saleRepository.amountGroupedBySeller();
+    }
+
+    @Override
+    public List<TaxSuccessDTO> successGroupedBySeller() {
+        return saleRepository.successGroupedBySeller();
     }
 }
