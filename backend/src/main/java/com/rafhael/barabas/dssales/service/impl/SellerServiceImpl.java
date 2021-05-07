@@ -23,7 +23,7 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public SellerDTO save(SellerDTO dto) {
         Seller save = sellerRepository.saveAndFlush(dto.convert());
-        return save.convert(save);
+        return save.convert();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class SellerServiceImpl implements SellerService {
         return sellerRepository
                 .findAll()
                 .stream()
-                .map(seller -> seller.convert(seller))
+                .map(Seller::convert)
                 .collect(Collectors.toList());
     }
 }

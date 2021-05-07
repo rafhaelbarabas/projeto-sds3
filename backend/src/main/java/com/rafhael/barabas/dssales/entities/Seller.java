@@ -41,8 +41,8 @@ public class Seller {
         return new Seller(dto);
     }
 
-    public SellerDTO convert(Seller seller){
-        return new SellerDTO(seller);
+    public SellerDTO convert(){
+        return new SellerDTO(this);
     }
 
     public Long getId() {

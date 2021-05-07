@@ -1,18 +1,14 @@
 package com.rafhael.barabas.dssales.dto;
 
-import com.rafhael.barabas.dssales.entities.Sale;
 import com.rafhael.barabas.dssales.entities.Seller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SellerDTO implements Serializable {
     private static final long serialVersionUID = -307674288287663554L;
 
     private Long id;
     private String name;
-    private List<Sale> sales = new ArrayList<>();
 
     public SellerDTO() {
     }
@@ -27,7 +23,7 @@ public class SellerDTO implements Serializable {
         name = entity.getName();
     }
 
-    public Seller convert(){
+    public Seller convert() {
         return new Seller(this);
     }
 
@@ -47,12 +43,5 @@ public class SellerDTO implements Serializable {
         this.name = name;
     }
 
-    public List<Sale> getSales() {
-        return sales;
-    }
-
-    public void addSale(Sale sale) {
-        this.sales.add(sale);
-    }
 }
 

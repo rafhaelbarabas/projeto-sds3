@@ -1,8 +1,11 @@
 package com.rafhael.barabas.dssales.service;
 
 import com.rafhael.barabas.dssales.dto.SaleDTO;
-import com.rafhael.barabas.dssales.entities.Sale;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface SaleService {
-    Sale save(SaleDTO dto);
+    SaleDTO save(SaleDTO dto);
+
+    Page<SaleDTO> findAll(Pageable pageable);
 }
