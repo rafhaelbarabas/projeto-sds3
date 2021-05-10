@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { SaleSum } from 'types/sale';
 import { BASE_URL } from 'utils/requests';
@@ -10,23 +11,20 @@ type ChartData = {
 
 function DonutChart() {
 
-  let chartData: ChartData = {
-    labels: [],
-    series: []
-  };
+  const [chartData, setChartData] = useState<ChartData>({ labels: [], series: [] });
 
-  axios.get(`${BASE_URL}/sales/amount-by-seller`)
-    .then(res => {
-      const data = res.data as SaleSum[];
-      const labels = data.map(x => x.sellerName);
-      const series = data.map(x => x.sum);
-      chartData = { labels, series }
-      console.log(chartData)
-
-    })
-    .catch(error => {
-      console.log('erro ao realizar a requisicao: ' + error)
-    })
+  useEffect(() => {
+    axios.get(`${BASE_URL}/sales/amount-by-seller`)
+      .then(res => {
+        const data = res.data as SaleSum[];
+        const labels = data.map(x => x.sellerName);
+        const series = data.map(x => x.sum);
+        setChartData({ labels, series })
+      })
+      .catch(error => {
+        console.log('erro ao realizar a requisição: ' + error)
+      })
+  }, [])
 
   const options = {
     legend: {
